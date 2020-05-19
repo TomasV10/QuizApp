@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QuizResults</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h3> Result</h3>
+<table>
+    <thead>
+    <tr>
+        <th>No.</th>
+        <th>Question</th>
+    </tr>
+    </thead>
+    <tbody>
+    <form>
+        <th:block th:each ="question : ${questions}">
+            <td th:text="${question.id}"></td>
+            <td th:text="${question.content}"></td>
+            <input type="hidden" name="questionId" th:value="${question.id}">
+            <tr th:each="answer : ${question.answers}">
+                <td th:name="${question.id}" th:value="${answer.id}"></td>
+                <td th:switch="${answer.correct}">
+                    <i th:case="true" class="text-success" th:text="${answer.content}"></i>
+                    <i th:case="false" class="text-danger" th:text="${answer.content}"></i>
+                </td>
+            </tr>
+        </th:block>
+    </form>
+    </tbody>
+</table>
+   <span> You scored:</span><span th:text="${score}">points</span>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
