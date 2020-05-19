@@ -1,5 +1,7 @@
 package com.practise.quiz.entities;
 
+import com.practise.quiz.dto.AnswerDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -64,5 +66,9 @@ public class Answer {
                 ", content='" + content + '\'' +
                 ", correct=" + correct +
                 '}';
+    }
+
+    public AnswerDto toDto(){
+        return new AnswerDto(id, content, question, correct);
     }
 }

@@ -1,5 +1,7 @@
 package com.practise.quiz.entities;
 
+import com.practise.quiz.dto.QuestionDto;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +61,9 @@ public class Question implements java.io.Serializable {
                 ", content='" + content + '\'' +
                 ", answers=" + answers +
                 '}';
+    }
+
+    public QuestionDto toDto(){
+        return new QuestionDto(id, content, answers);
     }
 }
